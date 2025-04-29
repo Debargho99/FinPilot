@@ -2,65 +2,87 @@
 
 <img src="./assets/finbot_sticker.png" alt="Finbot Sticker" width="100"/>
 
-Finbot is a modular AI-driven assistant built using the [LlamaIndex](https://gpt-index.readthedocs.io/) library. It leverages a **Structured Planner Agent** to interact with tools and execute tasks. The project also includes an MCP (Model Context Protocol) server for managing tool specifications.
+FinPilot is a modular AI-driven assistant built using the [LlamaIndex](https://gpt-index.readthedocs.io/) library. It leverages a **Structured Planner Agent** to interact with tools and execute tasks. The project also includes an MCP (Model Context Protocol) server for managing tool specifications.
 
-## Setup
-- Clone the repository 
-- `pip install --upgrade pip`
-- `pip install uv`
-- Create your `.env` file with openAI key - `echo 'OPENAI_API_KEY="xyz"' > .env`
-- Install Dependencies - `uv sync` if you have a python 3.10 virtualenv already `uv sync --active`
-- If you are using `uv sync` make sure to activate the virtualenv `source .venv/bin/activate`
+---
 
+## 🔧 Setup
 
-## Components
+```bash
+git clone <repo-url>
+pip install --upgrade pip
+pip install uv
+echo 'OPENAI_API_KEY="xyz"' > .env
+uv sync  # (if using Python 3.10 virtualenv)
+source .venv/bin/activate  # activate the virtual environment
+```
+
+---
+
+## 🧠 Components
 
 ### MCP Server
-The MCP server is responsible for providing tool specifications and handling tool-related interactions. It is built using the `mcp[cli]` package in Python and runs as a standalone server.
+
+The MCP server provides tool specifications and handles tool-related queries. Built with the `mcp[cli]` package.
 
 ### Agent
-The `agent.py` script initializes a **Structured Planner Agent** from LlamaIndex. It uses:
-- **Tools**: Loaded from the MCP server.
-- **LLM**: OpenAI's GPT-4o model.
-- **Prompts**: Custom initial and refinement prompts for planning.
 
-The agent interacts with the tools and executes tasks based on user input.
+The `agent.py` script launches a **Structured Planner Agent** using:
+- 🛠️ Tools: Loaded from the MCP server
+- 🧠 LLM: OpenAI's GPT-4o
+- 📜 Prompts: Custom planning instructions
 
+### Run MCP Server
 
-### Running the MCP Server
- To start the server:
-1. Navigate to the directory containing the MCP server code.
-2. Run the following command:
-   ```bash
-   uv run --active server.py
-   ```
-3. To use the MCP inspector `mcp dev server.py`
+```bash
+uv run --active server.py
+# MCP inspector:
+mcp dev server.py
+```
 
-  
+### Run the Agent
 
-### Running the Agent
-To start the agent:
-1. Ensure the MCP server is running.
-2. Run the `agent.py` script:
-   ```bash
-   python agent.py
-   ```
+```bash
+python agent.py
+```
 
-   The agent will initialize, load tools from the MCP server, and start a chat interface.
+---
 
-## Project Structure
+## 📦 Project Structure
+
 ```
 finbot/
-├── agent.py          # Main script for the Structured Planner Agent
-├── prompts.py        # Contains custom prompts for the agent
-├── requirements.txt  # Python dependencies
-├── .env              # Environment variables
-├── README.md         # Project documentation
-└── mcp_server/       # MCP server implementation
+├── agent.py
+├── prompts.py
+├── requirements.txt
+├── .env
+├── README.md
+└── mcp_server/
 ```
 
-## Logging
-The project uses the `loguru` library for logging. Tool metadata is logged during initialization for better traceability.
+---
 
-## License
-This project is licensed under the MIT License.
+## 🔍 Planning Flow Diagram
+
+<img src="./assets/block_diagram.png" alt="Finbot Block Diagram" width="600"/>
+
+---
+
+## 🎥 Working Demo
+
+<video controls width="600">
+  <source src="./assets/medium.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+---
+
+## 📝 Logging
+
+We use the `loguru` library. Tool metadata is logged at init for better traceability.
+
+---
+
+## 📜 License
+
+MIT License
