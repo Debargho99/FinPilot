@@ -1,4 +1,4 @@
-# Finbot
+# FinPilot
 
 <img src="./assets/finbot_sticker.png" alt="Finbot Sticker" width="100"/>
 
